@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub - By aan</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#059669">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StudyHub">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>StudyHub 📚</h1>
+            <p>Aplikasi Lengkap untuk mengontrol pembelajaran/p>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('tasks')">
+                <span>📅</span> Tugas & Jadwal
+            </button>
+            <button class="tab-btn" onclick="switchTab('grades')">
+                <span>🧮</span> Kalkulator Nilai
+            </button>
+            <button class="tab-btn" onclick="switchTab('flashcards')">
+                <span>🧠</span> Flashcard
+            </button>
+            <button class="tab-btn" onclick="switchTab('pomodoro')">
+                <span>⏱️</span> Pomodoro Timer
+            </button>
+            <button class="tab-btn" onclick="switchTab('notes')">
+                <span>📝</span> Catatan
+            </button>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-wrapper">
+        
+        <!-- Export Menu -->
+        <div class="export-menu">
+            <button class="btn-export" onclick="exportToPDF()">
+                📄 Export PDF
+            </button>
+            <button class="btn-export" onclick="exportToExcel()">
+                📊 Export Excel
+            </button>
+            <button class="btn-export" onclick="exportAllData()">
+                💾 Backup Data
+            </button>
+            <button class="btn-export" onclick="importData()">
+                📥 Import Data
+            </button>
+        </div>
+        
+        <!-- Tasks Tab -->
+        <div id="tasks-tab" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📅 Tugas & Jadwal</h2>
+                    <button class="btn-primary" onclick="toggleTaskForm()">
+                        <span>+</span> Tambah Tugas
+                    </button>
+                </div>
+
+                <div id="task-form" class="form-container" style="display: none;">
+                    <input type="text" id="task-title" placeholder="Judul Tugas" class="input-field">
+                    <input type="text" id="task-subject" placeholder="Mata Pelajaran" class="input-field">
+                    <input type="date" id="task-deadline" class="input-field">
+                    <button class="btn-primary btn-block" onclick="addTask()">Simpan Tugas</button>
+                </div>
+
+                <div id="tasks-list" class="tasks-list"></div>
+            </div>
+        </div>
+
+        <!-- Grades Tab -->
+        <div id="grades-tab" class="tab-content">
+            <div class="card">
+                <h2>🧮 Kalkulator Nilai</h2>
+
+                <div class="form-container">
+                    <h3>Tambah Nilai Baru</h3>
+                    <input type="text" id="grade-subject" placeholder="Mata Pelajaran (contoh: Matematika)" class="input-field">
+                    <div class="flex-row">
+                        <input type="number" id="grade-score" placeholder="Nilai (0-100)" class="input-field flex-1" min="0" max="100">
+                        <input type="text" id="grade-note" placeholder="Catatan (contoh: Ulangan Harian 1)" class="input-field flex-1">
+                    </div>
+                    <button class="btn-primary btn-block" onclick="addGrade()">Tambah Nilai</button>
+                </div>
+
+                <div id="grades-list" class="grades-grid"></div>
+            </div>
+        </div>
+
+        <!-- Flashcards Tab -->
+        <div id="flashcards-tab" class="tab-content">
+            <div class="card">
+                <h2>🧠 Flashcard Belajar</h2>
+
+                <div id="flashcard-sets-view">
+                    <button class="btn-primary mb-4" onclick="toggleSetForm()">
+                        <span>+</span> Set Baru
+                    </button>
+
+                    <div id="set-form" class="form-container" style="display: none;">
+                        <input type="text" id="set-name" placeholder="Nama Set (contoh: Vocab Bahasa Inggris)" class="input-field">
+                        <button class="btn-primary btn-block" onclick="createSet()">Buat Set</button>
+                    </div>
+
+                    <div id="sets-list" class="sets-grid"></div>
+                </div>
+
+                <div id="flashcard-study-view" style="display: none;">
+                    <button class="btn-back" onclick="backToSets()">← Kembali ke Set</button>
+                    <h3 id="current-set-name" class="mt-4"></h3>
+
+                    <div id="card-display" class="flashcard-display">
+                        <div class="flashcard" onclick="flipCard()">
+                            <p class="card-label" id="card-label">PERTANYAAN</p>
+                            <p class="card-text" id="card-text"></p>
+                            <p class="card-hint">Klik untuk balik kartu</p>
+                        </div>
+                    </div>
+
+                    <div class="card-navigation">
+                        <button class="btn-secondary" onclick="prevCard()">← Sebelumnya</button>
+                        <span id="card-counter"></span>
+                        <button class="btn-secondary" onclick="nextCard()">Berikutnya →</button>
+                    </div>
+
+                    <div class="form-container mt-4">
+                        <h3>Tambah Kartu Baru</h3>
+                        <input type="text" id="card-front" placeholder="Depan (contoh: Beautiful)" class="input-field">
+                        <input type="text" id="card-back" placeholder="Belakang (contoh: Indah)" class="input-field">
+                        <button class="btn-primary btn-block" onclick="addCard()">Tambah Kartu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pomodoro Tab -->
+        <div id="pomodoro-tab" class="tab-content">
+            <div class="card">
+                <h2>⏱️ Pomodoro Timer</h2>
+
+                <div class="text-center">
+                    <div id="pomodoro-mode" class="mode-badge">🔥 WAKTU FOKUS</div>
+
+                    <div class="timer-display">
+                        <div id="timer-text" class="timer-text">25:00</div>
+                    </div>
+
+                    <div class="timer-controls">
+                        <button class="btn-timer-primary" onclick="toggleTimer()">
+                            <span id="timer-btn-icon">▶</span>
+                            <span id="timer-btn-text">Mulai</span>
+                        </button>
+                        <button class="btn-timer-secondary" onclick="resetTimer()">
+                            <span>↻</span> Reset
+                        </button>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 Cara Pakai Pomodoro</h3>
+                        <ul>
+                            <li>• Fokus selama 25 menit tanpa distraksi</li>
+                            <li>• Istirahat 5 menit setelahnya</li>
+                            <li>• Ulangi 4 kali, lalu istirahat panjang (15-30 menit)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Tab -->
+        <div id="notes-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>📝 Catatan & Rangkuman</h2>
+                    <button class="btn-primary" onclick="toggleNoteForm()">
+                        <span>+</span> Catatan Baru
+                    </button>
+                </div>
+
+                <div id="note-form" class="form-container" style="display: none;">
+                    <input type="text" id="note-title" placeholder="Judul Catatan" class="input-field">
+                    <input type="text" id="note-subject" placeholder="Mata Pelajaran (opsional)" class="input-field">
+                    <textarea id="note-content" placeholder="Isi catatan..." class="textarea-field"></textarea>
+                    <div class="flex-row">
+                        <button class="btn-primary flex-1" onclick="saveNote()">💾 Simpan</button>
+                        <button class="btn-secondary" onclick="cancelNote()">Batal</button>
+                    </div>
+                </div>
+
+                <div id="notes-list" class="notes-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Semangat belajar! 💪📚 Kamu pasti bisa!</p>
+    </div>
+
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
