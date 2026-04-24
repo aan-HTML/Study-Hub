@@ -1,23 +1,11 @@
 # 📚 StudyHub — Smart Learning Assistant
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Made%20with-HTML%20CSS%20JS-orange?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Project-Personal-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge">
-</p>
-
 ---
 
 ## Overview
 **StudyHub** adalah platform web berbasis **HTML, CSS, dan JavaScript** yang dirancang untuk membantu pengguna dalam mengelola aktivitas belajar secara lebih terstruktur dan efisien.
 
 Berbeda dari website biasa, StudyHub berfungsi sebagai **tool produktivitas belajar all-in-one** yang menggabungkan berbagai fitur penting dalam satu tempat dengan tampilan yang clean dan ringan.
-
----
-
-## Live Demo
-🔗 https://studyhub-tan.vercel.app/
 
 ---
 
