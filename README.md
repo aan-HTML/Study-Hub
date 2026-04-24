@@ -1,10 +1,6 @@
 # 📚 StudyHub — Smart Learning Assistant
 
 <p align="center">
-  <img src="img/proyek/studyhub.webp" alt="StudyHub Preview" width="600"/>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
   <img src="https://img.shields.io/badge/Made%20with-HTML%20CSS%20JS-orange?style=for-the-badge">
   <img src="https://img.shields.io/badge/Project-Personal-blue?style=for-the-badge">
@@ -13,19 +9,19 @@
 
 ---
 
-## ✨ Overview
+## Overview
 **StudyHub** adalah platform web berbasis **HTML, CSS, dan JavaScript** yang dirancang untuk membantu pengguna dalam mengelola aktivitas belajar secara lebih terstruktur dan efisien.
 
 Berbeda dari website biasa, StudyHub berfungsi sebagai **tool produktivitas belajar all-in-one** yang menggabungkan berbagai fitur penting dalam satu tempat dengan tampilan yang clean dan ringan.
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 🔗 https://studyhub-tan.vercel.app/
 
 ---
 
-## 🎯 Tujuan
+## Tujuan
 - Membantu pengguna mengatur aktivitas belajar  
 - Meningkatkan fokus dan produktivitas  
 - Menyediakan tools belajar dalam satu platform  
@@ -33,7 +29,7 @@ Berbeda dari website biasa, StudyHub berfungsi sebagai **tool produktivitas bela
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 - **HTML5** — struktur halaman  
 - **CSS3** — styling & layout  
 - **JavaScript (Vanilla JS)** — interaktivitas  
@@ -41,7 +37,7 @@ Berbeda dari website biasa, StudyHub berfungsi sebagai **tool produktivitas bela
 
 ---
 
-## 🚀 Features
+## Features
 
 - 📅 **Manajemen Tugas & Jadwal**  
   Mengatur daftar tugas dan jadwal belajar agar lebih rapi dan terorganisir.
@@ -72,7 +68,7 @@ Berbeda dari website biasa, StudyHub berfungsi sebagai **tool produktivitas bela
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 ```bash
 studyhub/
 │── index.html
@@ -84,7 +80,7 @@ studyhub/
 
 ---
 
-## 🧠 Concept
+## Concept
 StudyHub dibangun dengan konsep:
 - **All-in-One Learning Tools**  
 - **Simple but Powerful**  
@@ -94,7 +90,7 @@ Tujuannya adalah mengurangi kebutuhan membuka banyak aplikasi saat belajar.
 
 ---
 
-## 💡 Getting Started
+## Getting Started
 
 ```bash
 git clone https://github.com/username/studyhub.git
@@ -116,9 +112,9 @@ index.html
 
 ## 👨‍💻 Author
 **Aan**  
-🚀 Frontend Developer | UI Enthusiast  
+Frontend Developer | UI Enthusiast  
 
 ---
 
-## ⭐ Support
+## Support
 Jika kamu suka project ini, jangan lupa kasih **star ⭐** di repository ini!
